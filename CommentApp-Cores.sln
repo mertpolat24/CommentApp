@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35521.163 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentApp-Cores", "CommentApp-Cores\CommentApp-Cores.csproj", "{15B35B59-91DE-4012-888E-BF7E1B580974}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentApp-Repositories", "CommentApp-Repositories\CommentApp-Repositories.csproj", "{742572F4-B70B-4392-A3AE-8F8A22F3C486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentApp-Services", "CommentApp-Services\CommentApp-Services.csproj", "{3F5FBF7C-0EAC-4319-B3DB-E90406C7D83D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommentApp-Web", "CommentApp-Web\CommentApp-Web.csproj", "{ABD3D6A8-D88B-45F9-8D98-9CC786E386B5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15B35B59-91DE-4012-888E-BF7E1B580974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15B35B59-91DE-4012-888E-BF7E1B580974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15B35B59-91DE-4012-888E-BF7E1B580974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15B35B59-91DE-4012-888E-BF7E1B580974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{742572F4-B70B-4392-A3AE-8F8A22F3C486}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{742572F4-B70B-4392-A3AE-8F8A22F3C486}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{742572F4-B70B-4392-A3AE-8F8A22F3C486}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{742572F4-B70B-4392-A3AE-8F8A22F3C486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F5FBF7C-0EAC-4319-B3DB-E90406C7D83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F5FBF7C-0EAC-4319-B3DB-E90406C7D83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F5FBF7C-0EAC-4319-B3DB-E90406C7D83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F5FBF7C-0EAC-4319-B3DB-E90406C7D83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD3D6A8-D88B-45F9-8D98-9CC786E386B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD3D6A8-D88B-45F9-8D98-9CC786E386B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD3D6A8-D88B-45F9-8D98-9CC786E386B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD3D6A8-D88B-45F9-8D98-9CC786E386B5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

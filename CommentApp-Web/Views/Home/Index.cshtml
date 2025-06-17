@@ -1,0 +1,172 @@
+﻿@model List<CommentApp_Cores.Models.Comment>
+@{
+    ViewData["Title"] = "Yorum Paneli";
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h1 class="fw-bold text-primary">YorumVar!</h1>
+         <h3 class="mb-0 fw-semibold text-dark">YorumVar!'a Hoş Geldiniz.</h3>
+        <h5 class="mb-0 fw-semibold text-dark">Herhangi bir fikir hakkında yorumunuzu yapın ilgililer fikirlerinizi okusun!</h5>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-lg-8">
+            <div class="card shadow rounded-4 border-0">
+                <div class="card-header bg-white border-bottom py-3">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0 fw-semibold text-dark">💬Yorumlar</h5>
+                        <div>
+                            <a href="?sortType=newest" class="btn btn-sm btn-outline-primary me-2">
+                                <i class="bi bi-clock-history me-1"></i> Yeniler
+                            </a>
+                            <a href="?sortType=points" class="btn btn-sm btn-outline-warning">
+                                <i class="bi bi-star-fill me-1"></i> Puanlar
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body border-bottom">
+                    <form method="get" class="row g-2 align-items-center">
+                        <div class="col-md-8">
+                            <select name="categoryId" class="form-select form-select-sm rounded-3" onchange="this.form.submit()">
+                                <option value="">🎯 Tüm Kategoriler</option>
+                                @foreach (var cat in ViewBag.Categories)
+                                {
+                                    <option value="@cat.Id" selected="@(cat.Id == ViewBag.SelectedCategoryId)">@cat.Name</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <button type="submit" class="btn btn-sm btn-outline-success w-100 rounded-3">
+                                <i class="bi bi-filter-circle me-1"></i> Filtrele
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-body p-0">
+                    <div class="list-group list-group-flush overflow-auto" style="max-height: 500px;">
+                        @if (Model.Any())
+                        {
+                            foreach (var comment in Model)
+                            {
+                                <div class="list-group-item border-bottom py-3 px-4 bg-white rounded-2 mb-1">
+                                    <div class="d-flex justify-content-between align-items-start">
+                                        <h4 class="fw-semibold mb-1 text-dark">@comment.Title</h4>
+                                        <span class="badge bg-light text-primary border border-primary">@comment.Category.Name</span>
+                                    </div>
+                                    <p class="text-secondary small mb-2">@comment.CommentContent</p>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        @{
+                                            string visibleName = "";
+
+                                            if (!string.IsNullOrEmpty(comment.Name))
+                                            {
+                                                var firstChar = char.ToUpper(comment.Name[0]);
+                                                var secondChar = comment.Name.Length > 1 ? comment.Name[1] : ' ';
+                                                visibleName = firstChar.ToString() + secondChar + "****";
+                                            }
+                                        }
+                                        <p class="text-secondary small mb-2">@visibleName</p>
+                                        <div class="stars">
+                                            @for (int i = 0; i < comment.Point; i++)
+                                            {
+                                                <i class="bi bi-star-fill text-warning" style="opacity: 0.9;">★</i>
+                                            }
+                                        </div>
+                                        <small class="text-muted">@comment.CreateDate.ToString("f")</small>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="text-center py-4 text-muted">
+                                <i class="bi bi-chat-square-text fs-2"></i>
+                                <p class="mt-2">Henüz yorum bulunmamaktadır</p>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="card border-0 shadow-sm">
+                <div class="card-header bg-white py-3">
+                    <h4 class="fw-semibold mb-1 text-dark">➕Yeni Yorum</h4>
+                </div>
+                <div class="card-body">
+                    <form asp-action="AddComment" method="post" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <h6 class="fw-semibold mb-1 text-dark">İsminiz</h6>
+                            <input name="Name" class="form-control form-control-sm" required maxlength="100">
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-semibold mb-1 text-dark">Başlık</h6>
+                            <input name="Title" class="form-control form-control-sm" required maxlength="100">
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-semibold mb-1 text-dark">Yorum İçeriği</h6>
+                            <textarea name="CommentContent" class="form-control form-control-sm" rows="3" required></textarea>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md-6 mb-3">
+                                <h6 class="fw-semibold mb-1 text-dark">Kategori</h6>
+                                <select name="CategoryId" class="form-select form-select-sm" required>
+                                    <option value="">Seçiniz</option>
+                                    @foreach (var cat in ViewBag.Categories)
+                                    {
+                                        <option value="@cat.Id">@cat.Name</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <h6 class="fw-semibold mb-1 text-dark">Puan</h6>
+                                <select name="Point" class="form-select form-select-sm" required>
+                                    @for (int i = 1; i <= 5; i++)
+                                    {
+                                        var stars = new string('★', i); 
+                                        <option value="@i">@stars</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-sm btn-primary w-100 mt-2">
+                            <i class="bi bi-send"></i> Gönder
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        background-color: #f5f7fa;
+    }
+
+    .list-group-item {
+        transition: all 0.3s ease;
+    }
+
+        .list-group-item:hover {
+            background-color: #f1f1f1;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+        }
+
+    .stars i {
+        transition: transform 0.2s;
+    }
+
+        .stars i:hover {
+            transform: scale(1.2);
+        }
+
+    .card {
+        transition: box-shadow 0.3s ease;
+    }
+
+        .card:hover {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+</style>
