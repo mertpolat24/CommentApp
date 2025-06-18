@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentApp_Repositories.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250617135448_init3")]
-    partial class init3
+    [Migration("20250618060834_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,8 +70,8 @@ namespace CommentApp_Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Point")
-                        .HasColumnType("real");
+                    b.Property<int>("Point")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");

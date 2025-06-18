@@ -23,6 +23,8 @@ namespace CommentApp_Services
 
         public void CreateComment(Comment comment)
         {
+            if (comment.CategoryId == 0 || comment.Point == 0 || comment.Title is null || comment.CommentContent is null || comment.Name is null ) 
+                throw new Exception ("Lütfen tüm alanları doldurun!");
             CommentManager.Create(comment);
             CommentManager.Save();
         }

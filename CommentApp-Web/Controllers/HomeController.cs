@@ -57,7 +57,15 @@ namespace CommentApp_Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                _commentService.CreateComment(comment);
+                try
+                {
+                    _commentService.CreateComment(comment);
+                    TempData["SuccessMessage"] = "Yorum baþarýyla eklendi!";
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                }
                 return RedirectToAction("Index"); 
             }
             var comments = _commentService.GetAllComments().Where(c => c.Status == Status.Active);

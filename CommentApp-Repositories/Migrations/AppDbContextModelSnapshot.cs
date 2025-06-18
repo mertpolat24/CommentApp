@@ -67,8 +67,8 @@ namespace CommentApp_Repositories.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Point")
-                        .HasColumnType("real");
+                    b.Property<int>("Point")
+                        .HasColumnType("int");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
